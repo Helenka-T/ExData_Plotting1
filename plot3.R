@@ -1,0 +1,11 @@
+headers <- read.table("C:/Users/Elena/Desktop/household.txt", nrows = 1, header=T, sep=";")
+data <- read.table("C:/Users/Elena/Desktop/household.txt", sep = ";", na.strings = "?", skip = 21997 + 1440 * 31, nrows = 2880, col.names=names(headers))
+
+png("C:/Users/Elena/Desktop/plot3.png")
+Sys.setlocale("LC_ALL", "US")
+plot(data$datetime, data$Sub_metering_1, type = "n", xlab = NA, ylab = "Energy sub metering")
+lines(data$datetime, data$Sub_metering_1, col = "black")
+lines(data$datetime, data$Sub_metering_2, col = "red", add = TRUE)
+lines(data$datetime, data$Sub_metering_3, col = "blue", add = TRUE)
+legend("topright", lty = 1, col = c("black", "red", "blue"), legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
+dev.off()
